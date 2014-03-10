@@ -45,14 +45,14 @@ public class BigDataProc {
 	public void getBigK(int K)
 	{
 		SizedMinHeap<Integer> pq = new SizedMinHeap<Integer>(K);
-		for(int i = 0;i<1;i++)
+		for(int i = 0;i<M;i++)
 		{
 			SequentialSearchST<String,Integer> list = st.st(i);
 			for(String word:list.keys())
 				pq.insert(list.get(word));
-			pq.print();
+			
 		}
-		
+		pq.print();
 	}
 	
 	/**
