@@ -1,7 +1,5 @@
 package algorithms;
 
-import java.awt.RenderingHints.Key;
-
 import stdlib.In;
 
 /**
@@ -13,11 +11,15 @@ public class BigDataProc {
 	private HashST<String, Integer> st;  // the Hash table to account the frequencies
 	private In in;
 	private final int M;   //the size of hash table
+	private final int K;
+	SizedMinHeap<Integer> pq ;
 	
-	public BigDataProc(int M)
+	public BigDataProc(int M, int K)
 	{
 		this.M = M;
+		this.K = K;
 		st = new HashST<String,Integer>(M);
+		pq = new SizedMinHeap<Integer>(K);
 		
 	}
 	/**
@@ -35,19 +37,16 @@ public class BigDataProc {
 			{
 				if(st.contains(words)) st.put(words, st.get(words)+1);
 				else st.put(words, 1);
-			}
-				
-		}
-		
+			}		
+		}	
 	}
 	/**
 	 * for each chain in the hash table, select the biggest K items using 
 	 * a min heap with fixed size
-	 * @param K
 	 */
-	public void getBigK(int K)
+	public void getBigK()
 	{
-		SizedMinHeap<Integer> pq = new SizedMinHeap<Integer>(K);
+		
 		for(int i = 0;i<M;i++)
 		{
 			SequentialSearchST<String,Integer> list = st.st(i);
@@ -58,26 +57,18 @@ public class BigDataProc {
 		pq.print();
 	}
 	
-	/**
-	 * helper functions 
-	 * @param key
-	 * @return
+	/*
+	 * a test client
 	 */
-	
-	private int hash(Key key)
-	{
-		return (key.hashCode() & 0x7fffffff) % M;
-	}
 	
 	public static void main(String[] args)
 	{
-		String file = "../me.txt";
-		TimeWatch watch = new TimeWatch();
-		BigDataProc big = new BigDataProc(500);
+		String file = "../mydata.txt";
+		TimeWatch watch = new TimeWatch(); // measure the running time
+		BigDataProc big = new BigDataProc(5000,5); //use a hash table with size 5000 to find the biggest 5 occurrences
 		
 		big.ScanData(file);
-		big.getBigK(5);
-		System.out.println();
+		big.getBigK();
 		System.out.println("the elipsed time is:"+ watch.elisedTime());
 	}
 
