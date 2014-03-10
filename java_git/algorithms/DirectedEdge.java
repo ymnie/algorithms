@@ -22,10 +22,4 @@ public class DirectedEdge {
 	public int to() {return w;}
 	public double weight(){return weight;}
 	
-	public static void main(String[] args)
-	{
-		String s = "afffs";
-		System.out.println(s.charAt(0)+2);
-	}
-
 }
