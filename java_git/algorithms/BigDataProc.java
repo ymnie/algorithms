@@ -11,15 +11,15 @@ public class BigDataProc {
 	private HashST<String, Integer> st;  // the Hash table to account the frequencies
 	private In in;
 	private final int M;   //the size of hash table
-	private final int K;
-	SizedMinHeap<Integer> pq ;
+	private final int K;   //find the biggest K values
+	private SizedMinHeap<Integer> pq ;
 	
 	public BigDataProc(int M, int K)
 	{
 		this.M = M;
 		this.K = K;
-		st = new HashST<String,Integer>(M);
-		pq = new SizedMinHeap<Integer>(K);
+		this.st = new HashST<String,Integer>(M);
+		this.pq = new SizedMinHeap<Integer>(K);
 		
 	}
 	/**
