@@ -16,8 +16,9 @@ public class BigDataProc {
 	
 	public BigDataProc(int M)
 	{
-		st = new HashST<String,Integer>();
 		this.M = M;
+		st = new HashST<String,Integer>(M);
+		
 	}
 	/**
 	 * scanning the data from given file and store them into hash table 
@@ -25,15 +26,17 @@ public class BigDataProc {
 	 */
 	public void ScanData(String filename)
 	{
-		st = new HashST<String,Integer>(M);
 		in = new In(filename);
 		while(in.hasNextLine())
 		{
 			String line = in.readLine();
 			String[] tokens = line.split(" ");
 			for(String words:tokens)
-				if(!st.contains(words)) st.put(words, 1);
-				else st.put(words, st.get(words)+1);
+			{
+				if(st.contains(words)) st.put(words, st.get(words)+1);
+				else st.put(words, 1);
+			}
+				
 		}
 		
 	}
@@ -56,7 +59,7 @@ public class BigDataProc {
 	}
 	
 	/**
-	 * heler functions 
+	 * helper functions 
 	 * @param key
 	 * @return
 	 */
@@ -68,10 +71,14 @@ public class BigDataProc {
 	
 	public static void main(String[] args)
 	{
-		BigDataProc big = new BigDataProc(100);
-		String file = "C:/Users/yimin.nie/Desktop/javafile/tale.txt";
+		String file = "../me.txt";
+		TimeWatch watch = new TimeWatch();
+		BigDataProc big = new BigDataProc(500);
+		
 		big.ScanData(file);
 		big.getBigK(5);
+		System.out.println();
+		System.out.println("the elipsed time is:"+ watch.elisedTime());
 	}
 
 }
