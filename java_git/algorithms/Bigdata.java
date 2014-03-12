@@ -42,7 +42,7 @@ public class Bigdata {
 		Out out;
 		for(int i = 0;i<M; i++)
 		{
-			String outfile = "C:/Users/yimin.nie/Desktop/javafile/outFile/out"+ i + ".txt";
+			String outfile = "C:/Users/.../out"+ i + ".txt";
 			out = new Out(outfile);
 			for (String words:st.st(i).keys())
 			{
@@ -60,7 +60,7 @@ public class Bigdata {
 		In in;
 		for (int i =0;i<M;i++) //read data from each files
 		{
-			String file = "C:/Users/yimin.nie/Desktop/javafile/outFile/out"+ i + ".txt";
+			String file = "C:/Users/.../out"+ i + ".txt";
 			in = new In(file);
 			while(in.hasNextLine())
 			{
@@ -87,7 +87,7 @@ public class Bigdata {
 	public static void main(String[] args)
 	{
 		int M = 100; //specify the number of files that need to be write into
-		String inFile = "C:/Users/yimin.nie/Desktop/javafile/inFile/tale.txt";
+		String inFile = "C:/Users/.../myData.txt";
 		TimeWatch watch = new TimeWatch();
 		Bigdata big = new Bigdata(M,inFile);
 		big.divData();
